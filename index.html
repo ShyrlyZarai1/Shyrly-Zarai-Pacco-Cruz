@@ -3,181 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHYRLY ZARAI - Universitaria Dragon Ball</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Shyrly Zarai - Tu Liebre en Abril</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dragon-orange: #FF9F1C;
-            --dragon-red: #E71D36;
-            --dragon-blue: #2EC4B6;
-            --dragon-yellow: #FFD700;
-            --dragon-dark: #011627;
-            --dragon-light: #FDFFFC;
-            --shenron-green: #2D936C;
+            --autumn-orange: #E67E22;
+            --autumn-red: #C0392B;
+            --autumn-brown: #8B4513;
+            --autumn-yellow: #F1C40F;
+            --autumn-cream: #F9E4C8;
+            --piano-black: #2C3E50;
+            --sheet-white: #ECF0F1;
+            --music-blue: #3498DB;
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
-            color: var(--dragon-dark);
-            background-color: var(--dragon-light);
+            color: var(--piano-black);
+            background-color: var(--autumn-cream);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 159, 28, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(46, 196, 182, 0.1) 0%, transparent 20%);
+                url('https://i.imgur.com/JqYeZoL.png'), 
+                url('https://i.imgur.com/JqYeZoL.png');
+            background-size: 300px, 200px;
+            background-position: left top, right bottom;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Esferas del dragón flotantes */
-        .dragon-ball {
+        /* Hojas cayendo */
+        .falling-leaf {
             position: fixed;
             width: 30px;
             height: 30px;
-            border-radius: 50%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23E67E22" d="M50,0 Q70,20 50,40 Q30,20 50,0 Z" opacity="0.8"/></svg>');
+            background-size: contain;
             z-index: -1;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
-            animation: floatBall 15s linear infinite;
+            animation: falling linear infinite;
             opacity: 0.7;
         }
 
-        @keyframes floatBall {
+        @keyframes falling {
             0% {
-                transform: translate(0, 0) scale(1);
+                transform: translate(0, -10vh) rotate(0deg);
                 opacity: 0;
             }
             10% {
                 opacity: 0.7;
             }
-            50% {
-                transform: translate(50vw, 50vh) scale(1.2);
-            }
             90% {
                 opacity: 0.7;
             }
             100% {
-                transform: translate(100vw, 100vh) scale(1);
+                transform: translate(calc(50vw - 100px), 100vh) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* Estrellas Dragon Ball */
-        .db-star {
-            position: absolute;
-            color: var(--dragon-red);
-            font-size: 1.5rem;
+        /* Pentagrama musical decorativo */
+        .sheet-music {
+            position: fixed;
+            width: 100%;
+            height: 120px;
+            background-image: 
+                linear-gradient(to bottom, 
+                    transparent 0%, 
+                    transparent 20%, 
+                    var(--piano-black) 20%, 
+                    var(--piano-black) 22%,
+                    transparent 22%,
+                    transparent 40%,
+                    var(--piano-black) 40%,
+                    var(--piano-black) 42%,
+                    transparent 42%,
+                    transparent 60%,
+                    var(--piano-black) 60%,
+                    var(--piano-black) 62%,
+                    transparent 62%,
+                    transparent 80%,
+                    var(--piano-black) 80%,
+                    var(--piano-black) 82%,
+                    transparent 82%,
+                    transparent 100%);
+            background-size: 100% 100%;
             z-index: -1;
-            opacity: 0.3;
-            animation: pulseStar 2s infinite alternate;
-        }
-
-        @keyframes pulseStar {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.2); opacity: 0.5; }
+            opacity: 0.1;
+            transform: rotate(-2deg);
         }
 
         header {
-            background: linear-gradient(135deg, var(--dragon-orange), var(--dragon-red));
-            color: var(--dragon-light);
-            padding: 30px 0;
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.9), rgba(192, 57, 43, 0.9));
+            color: var(--sheet-white);
+            padding: 40px 0;
             text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(1, 22, 39, 0.3);
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(44, 62, 80, 0.2);
             position: relative;
             overflow: hidden;
-            border-bottom: 5px solid var(--dragon-yellow);
+            border-bottom: 3px solid var(--autumn-brown);
         }
         
         header::after {
-            content: "";
+            content: "♫";
             position: absolute;
             bottom: -25px;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FF9F1C" d="M50,0 L61,35 L98,35 L68,57 L79,92 L50,72 L21,92 L32,57 L2,35 L39,35 Z"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            filter: drop-shadow(0 0 5px rgba(255,215,0,0.8));
+            font-size: 2.5rem;
+            color: var(--autumn-yellow);
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.7);
         }
         
         h1 {
             margin: 0;
-            font-size: 3rem;
-            letter-spacing: 2px;
-            font-family: 'Bangers', cursive;
-            color: var(--dragon-light);
-            text-shadow: 3px 3px 0 var(--dragon-dark), 5px 5px 0 var(--dragon-yellow);
+            font-size: 3.2rem;
+            letter-spacing: 1px;
+            font-family: 'Dancing Script', cursive;
+            color: var(--sheet-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             position: relative;
             display: inline-block;
-            animation: powerUp 1.5s infinite alternate;
+            animation: pulseTitle 2s infinite alternate;
         }
 
-        @keyframes powerUp {
-            0% { transform: scale(1); text-shadow: 3px 3px 0 var(--dragon-dark), 5px 5px 0 var(--dragon-yellow); }
-            100% { transform: scale(1.05); text-shadow: 3px 3px 0 var(--dragon-dark), 5px 5px 0 var(--dragon-yellow), 0 0 15px var(--dragon-orange); }
+        @keyframes pulseTitle {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(1.03); opacity: 1; }
         }
 
         .subtitle {
             font-style: italic;
-            font-size: 1.2rem;
-            color: var(--dragon-yellow);
-            margin-top: 0.5rem;
-            text-shadow: 1px 1px 1px var(--dragon-dark);
+            font-size: 1.3rem;
+            color: var(--autumn-yellow);
+            margin-top: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-family: 'Playfair Display', serif;
         }
         
         .container {
             width: 85%;
             max-width: 1200px;
-            margin: 30px auto;
+            margin: 40px auto;
             overflow: hidden;
             position: relative;
         }
         
         section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.85);
+            padding: 35px;
+            margin-bottom: 35px;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
             transition: all 0.4s ease;
-            border-top: 5px solid var(--dragon-orange);
+            border-left: 5px solid var(--autumn-red);
             position: relative;
             overflow: hidden;
-            border: 2px solid var(--dragon-dark);
+            backdrop-filter: blur(3px);
         }
 
         section::before {
             content: "";
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 10px;
+            right: 10px;
             width: 60px;
             height: 60px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23E71D36" stroke-width="3"/><circle cx="50" cy="20" r="10" fill="%23E71D36"/><circle cx="20" cy="50" r="10" fill="%23E71D36"/><circle cx="80" cy="50" r="10" fill="%23E71D36"/><circle cx="50" cy="80" r="10" fill="%23E71D36"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23C0392B" opacity="0.1" d="M50,0 Q60,40 90,50 Q60,60 50,100 Q40,60 10,50 Q40,40 50,0 Z"/></svg>');
             background-size: contain;
             background-repeat: no-repeat;
-            opacity: 0.1;
             transform: rotate(15deg);
         }
         
         section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(233, 29, 54, 0.3);
+            box-shadow: 0 12px 25px rgba(192, 57, 43, 0.2);
         }
         
         h2 {
-            color: var(--dragon-red);
+            color: var(--autumn-red);
             padding-bottom: 10px;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             display: inline-block;
             margin-top: 0;
-            font-family: 'Bangers', cursive;
+            font-family: 'Playfair Display', serif;
             position: relative;
-            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         h2::after {
@@ -186,8 +201,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--dragon-orange), var(--dragon-blue));
+            height: 2px;
+            background: linear-gradient(90deg, var(--autumn-orange), var(--autumn-brown));
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -203,67 +218,61 @@
         }
         
         li {
-            padding: 12px 0;
-            border-bottom: 2px dotted var(--dragon-blue);
+            padding: 15px 0;
+            border-bottom: 1px dashed var(--autumn-orange);
             position: relative;
-            padding-left: 40px;
+            padding-left: 50px;
             font-size: 1.1rem;
             transition: all 0.3s ease;
         }
 
         li:hover {
-            background-color: rgba(255, 159, 28, 0.1);
+            background-color: rgba(230, 126, 34, 0.05);
             transform: translateX(5px);
         }
         
         li::before {
-            content: "★";
-            color: var(--dragon-orange);
+            content: "♩";
+            color: var(--autumn-red);
             position: absolute;
             left: 0;
-            top: 10px;
-            font-size: 1.4rem;
+            top: 15px;
+            font-size: 1.8rem;
             transition: all 0.3s ease;
-            animation: spinStar 3s infinite linear;
-        }
-
-        @keyframes spinStar {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         li:hover::before {
-            color: var(--dragon-red);
-            transform: scale(1.5) rotate(360deg);
+            transform: scale(1.5);
+            color: var(--autumn-orange);
         }
         
         a {
-            color: var(--dragon-blue);
+            color: var(--music-blue);
             text-decoration: none;
             transition: all 0.3s ease;
             font-weight: 600;
             padding: 2px 4px;
             border-radius: 4px;
-            background: linear-gradient(to right, transparent 50%, rgba(46, 196, 182, 0.2) 50%);
+            background: linear-gradient(to right, transparent 50%, rgba(52, 152, 219, 0.1) 50%);
             background-size: 200% 100%;
             background-position: right bottom;
         }
         
         a:hover {
-            color: var(--dragon-red);
+            color: var(--autumn-red);
             background-position: left bottom;
             text-decoration: underline;
         }
         
         footer {
             text-align: center;
-            padding: 25px;
-            background: linear-gradient(135deg, var(--dragon-dark), #000);
-            color: var(--dragon-light);
-            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--autumn-brown), var(--piano-black));
+            color: var(--sheet-white);
+            margin-top: 60px;
             font-size: 1rem;
             position: relative;
-            border-top: 3px solid var(--dragon-orange);
+            border-top: 3px solid var(--autumn-red);
         }
 
         footer::before {
@@ -273,150 +282,135 @@
             left: 0;
             width: 100%;
             height: 20px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path fill="%23011627" d="M0,20 Q25,10 50,20 T100,20 Z"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path fill="%238B4513" d="M0,20 Q25,0 50,20 T100,20 Z"/></svg>');
             background-size: 100% 100%;
         }
         
-        .imagen-centrada {
+        .profile-image {
             display: block;
             margin: 30px auto;
             width: 100%;
-            max-width: 400px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border: 5px solid var(--dragon-yellow);
+            max-width: 350px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 5px solid var(--sheet-white);
             transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .imagen-centrada::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 159, 28, 0.1), rgba(233, 29, 54, 0.1));
-            z-index: 1;
+        .profile-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(192, 57, 43, 0.3);
         }
         
-        .imagen-centrada:hover {
-            transform: scale(1.03) rotate(2deg);
-            box-shadow: 0 15px 30px rgba(233, 29, 54, 0.4);
-        }
-        
-        .centrar-texto {
+        .centered-text {
             text-align: center;
-            margin: 20px 0;
+            margin: 25px 0;
             position: relative;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--autumn-brown);
+            font-size: 1.2rem;
         }
 
-        .centrar-texto::after {
-            content: "⚡";
+        .centered-text::before,
+        .centered-text::after {
+            content: "♪";
             position: absolute;
-            right: 10%;
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.5rem;
-            color: var(--dragon-orange);
-            opacity: 0.5;
-            animation: flash 1s infinite alternate;
+            color: var(--autumn-orange);
+            opacity: 0.6;
         }
 
-        @keyframes flash {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.8; }
+        .centered-text::before {
+            left: 10%;
+        }
+
+        .centered-text::after {
+            right: 10%;
         }
         
-        .btn-dragon {
+        .music-btn {
             display: inline-block;
-            background: linear-gradient(to right, var(--dragon-orange), var(--dragon-red));
-            color: white;
-            padding: 12px 25px;
+            background: linear-gradient(to right, var(--autumn-orange), var(--autumn-red));
+            color: var(--sheet-white);
+            padding: 12px 28px;
             border-radius: 30px;
             font-weight: 600;
             letter-spacing: 1px;
-            margin: 15px 5px;
+            margin: 20px 5px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 0 var(--dragon-dark);
+            box-shadow: 0 4px 0 var(--autumn-brown);
             border: none;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            font-family: 'Bangers', cursive;
+            font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
         }
 
-        .btn-dragon::before {
+        .music-btn::before {
             content: "";
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: all 0.5s ease;
             z-index: -1;
         }
         
-        .btn-dragon:hover {
+        .music-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 0 var(--dragon-dark);
-            background: linear-gradient(to right, var(--dragon-red), var(--dragon-orange));
+            box-shadow: 0 6px 0 var(--autumn-brown);
+            background: linear-gradient(to right, var(--autumn-red), var(--autumn-orange));
         }
 
-        .btn-dragon:hover::before {
+        .music-btn:hover::before {
             left: 100%;
         }
         
-        .btn-dragon:active {
+        .music-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 0 var(--dragon-dark);
+            box-shadow: 0 2px 0 var(--autumn-brown);
         }
 
-        .power-up {
-            animation: powerUpBtn 1s infinite alternate;
+        .pulse {
+            animation: pulseBtn 1.5s infinite alternate;
         }
         
-        @keyframes powerUpBtn {
-            0% { transform: translateY(0); box-shadow: 0 4px 0 var(--dragon-dark); }
-            100% { transform: translateY(-5px); box-shadow: 0 8px 0 var(--dragon-dark), 0 0 15px var(--dragon-orange); }
+        @keyframes pulseBtn {
+            0% { transform: translateY(0); box-shadow: 0 4px 0 var(--autumn-brown); }
+            100% { transform: translateY(-3px); box-shadow: 0 6px 0 var(--autumn-brown), 0 0 15px rgba(230, 126, 34, 0.5); }
         }
 
-        /* Shenron decorativo */
-        .shenron {
+        /* Piano decorativo */
+        .piano-keys {
             position: fixed;
-            bottom: -50px;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 150px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 100"><path fill="%232D936C" d="M0,50 Q50,0 100,50 T200,50 T300,50 T400,50 T500,50" stroke="%23011627" stroke-width="2"/><circle cx="50" cy="50" r="10" fill="%23FFD700"/><circle cx="150" cy="50" r="10" fill="%23FFD700"/><circle cx="250" cy="50" r="10" fill="%23FFD700"/><circle cx="350" cy="50" r="10" fill="%23FFD700"/><circle cx="450" cy="50" r="10" fill="%23FFD700"/></svg>');
-            background-repeat: repeat-x;
-            background-size: 500px 100px;
-            z-index: -1;
-            opacity: 0.1;
-            animation: shenronMove 60s linear infinite;
-        }
-
-        @keyframes shenronMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 1000px 0; }
-        }
-
-        /* Kame House decorativa */
-        .kame-house {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 100px;
-            height: 80px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80"><path fill="%23FF9F1C" d="M50,0 L100,50 L75,50 L75,80 L25,80 L25,50 L0,50 Z"/><rect x="40" y="50" width="20" height="30" fill="%23E71D36"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
+            height: 60px;
+            background: 
+                linear-gradient(to right, 
+                    #000 0%, #000 8%, 
+                    #fff 8%, #fff 16%, 
+                    #000 16%, #000 24%, 
+                    #fff 24%, #fff 32%, 
+                    #000 32%, #000 40%, 
+                    #fff 40%, #fff 48%, 
+                    #000 48%, #000 56%, 
+                    #fff 56%, #fff 64%, 
+                    #000 64%, #000 72%, 
+                    #fff 72%, #fff 80%, 
+                    #000 80%, #000 88%, 
+                    #fff 88%, #fff 96%, 
+                    #000 96%, #000 100%);
             z-index: -1;
             opacity: 0.1;
         }
@@ -427,69 +421,70 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             section {
-                padding: 20px;
+                padding: 25px;
             }
 
-            .centrar-texto::after {
+            .centered-text::before,
+            .centered-text::after {
                 display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Esferas del dragón decorativas -->
-    <div class="dragon-ball" style="background: var(--dragon-orange); top: 10%; left: 5%;"></div>
-    <div class="dragon-ball" style="background: var(--dragon-red); top: 30%; right: 10%;"></div>
-    <div class="dragon-ball" style="background: var(--dragon-blue); bottom: 20%; left: 15%;"></div>
-    <div class="dragon-ball" style="background: var(--dragon-yellow); bottom: 40%; right: 5%;"></div>
+    <!-- Hojas cayendo -->
+    <div class="falling-leaf" style="left: 10%; animation-duration: 15s; animation-delay: 0s;"></div>
+    <div class="falling-leaf" style="left: 30%; animation-duration: 18s; animation-delay: 3s; transform: scale(0.8);"></div>
+    <div class="falling-leaf" style="left: 70%; animation-duration: 20s; animation-delay: 5s; transform: scale(1.2);"></div>
+    <div class="falling-leaf" style="left: 50%; animation-duration: 17s; animation-delay: 7s;"></div>
+    <div class="falling-leaf" style="left: 85%; animation-duration: 16s; animation-delay: 2s; transform: scale(0.9);"></div>
 
-    <!-- Estrellas Dragon Ball -->
-    <div class="db-star" style="top: 15%; left: 20%;">★</div>
-    <div class="db-star" style="top: 25%; right: 25%;">★</div>
-    <div class="db-star" style="bottom: 15%; left: 30%;">★</div>
-    <div class="db-star" style="bottom: 25%; right: 20%;">★</div>
+    <!-- Pentagrama musical -->
+    <div class="sheet-music" style="top: 20%;"></div>
+    <div class="sheet-music" style="bottom: 15%; transform: rotate(2deg);"></div>
 
-    <!-- Shenron decorativo -->
-    <div class="shenron"></div>
-    <div class="kame-house"></div>
+    <!-- Teclas de piano -->
+    <div class="piano-keys"></div>
 
     <header>
         <div class="container">
-            <h1>SHYRLY ZARAI PACCO CRUZ</h1>
-            <p class="subtitle">« Estudiante Universitaria - Nivel de Poder: OVER 9000! »</p>
+            <h1>Shyrly Zarai Pacco Cruz</h1>
+            <p class="subtitle">« Como una melodía en el viento otoñal »</p>
         </div>
     </header>
 
     <div class="container">
         <!-- Sección de imagen -->
-        <section id="foto-perfil">
-            <div class="centrar-texto">
-                <h2>Mi Entrenamiento Universitario</h2>
+        <section id="profile">
+            <div class="centered-text">
+                Mi Viaje Musical Universitario
             </div>
-            <img src="https://via.placeholder.com/400x300?text=Dragon+Ball+UCSP" alt="Shyrly Zarai en la universidad" class="imagen-centrada">
-            <div class="centrar-texto">
-                <p>« Como Gokú en la Torre del Maestro Karin, superando mis límites en la Universidad Católica San Pablo »</p>
-                <button class="btn-dragon power-up">Ver Mi Nivel de Poder</button>
+            <img src="https://via.placeholder.com/350x450/f9e4c8/8b4513?text=Shyrly+Zarai" alt="Shyrly Zarai" class="profile-image">
+            <div class="centered-text">
+                « La vida no es más que una sucesión de oportunidades para interpretar nuestra propia música »
+            </div>
+            <div style="text-align: center;">
+                <button class="music-btn pulse">Escuchar Mi Melodía</button>
             </div>
         </section>
 
-        <section id="informacion-personal">
-            <h2>Datos del Guerrero Z</h2>
+        <section id="personal-info">
+            <h2>Partitura Personal</h2>
             <ul>
-                <li><strong>Nombre:</strong> SHYRLY ZARAI PACCO CRUZ</li>
-                <li><strong>Clase:</strong> Estudiante de Contabilidad</li>
-                <li><strong>Dojo:</strong> UNIVERSIDAD CATOLICA SAN PABLO</li>
-                <li><strong>Especialidad:</strong> Contabilidad (Ki de los Números)</li>
-                <li><strong>Nivel de Poder:</strong> OVER 9000!</li>
+                <li><strong>Nombre:</strong> Shyrly Zarai Pacco Cruz</li>
+                <li><strong>Instrumento:</strong> Contabilidad</li>
+                <li><strong>Conservatorio:</strong> Universidad Católica San Pablo</li>
+                <li><strong>Movimiento Actual:</strong> Tercer Año</li>
+                <li><strong>Estilo:</strong> Clásico con toques modernos</li>
             </ul>
         </section>
 
-        <section id="cursos-actuales">
-            <h2>Técnicas de Batalla</h2>
+        <section id="current-courses">
+            <h2>Piezas en Estudio</h2>
             <ul>
                 <li><strong>Contabilidad de Costos II</strong>
                     <p>Maestro: <a href="https://www.linkedin.com/in/julio-c%C3%A9sar-liz%C3%A1rraga-zegarra-01524289/">Julio César Lizarraga Zegarra</a></p>
@@ -501,7 +496,7 @@
                     <p>Maestro: <a href="https://www.linkedin.com/in/ricardo-enr%C3%ADquez-c%C3%A1ceres-88200325/">Ricardo Enríquez Cáceres</a></p>
                 </li>
                 <li><strong>Macroeconomia</strong>
-                    <p>Maestro: <a href="https://www.linkedin.com/in/lieslie-gallegos-arias-investigador-renacyt-773713a5/">Lieslie Gallegos Arias</a></p>
+                    <p>Maestra: <a href="https://www.linkedin.com/in/lieslie-gallegos-arias-investigador-renacyt-773713a5/">Lieslie Gallegos Arias</a></p>
                 </li>
                 <li><strong>Introduccion a Ciencia de la Computacion</strong>
                     <p>Maestro: <a href="https://www.linkedin.com/in/renzo-medina-zeballos-77145a35/">Renzo Medina Zeballos</a></p>
@@ -515,106 +510,97 @@
             </ul>
         </section>
 
-        <section id="enlaces-companeros">
-            <h2>Compañeros de Entrenamiento</h2>
-            <div class="centrar-texto">
-                <button class="btn-dragon" style="margin: 10px">Gokú</button>
-                <button class="btn-dragon" style="margin: 10px">Vegeta</button>
-                <button class="btn-dragon" style="margin: 10px">Gohan</button>
-                <button class="btn-dragon" style="margin: 10px">Piccolo</button>
-                <button class="btn-dragon" style="margin: 10px">Trunks</button>
+        <section id="classmates">
+            <h2>Dúos y Ensambles</h2>
+            <div style="text-align: center;">
+                <button class="music-btn">Kaori Miyazono</button>
+                <button class="music-btn">Kousei Arima</button>
+                <button class="music-btn">Tsubaki Sawabe</button>
+                <button class="music-btn">Watari Ryouta</button>
             </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2023 SHYRLY ZARAI PACCO CRUZ | Dragon Ball UCSP</p>
-        <p>¡Cuando se junten las 7 esferas del dragón, pediré aprobar todos mis cursos!</p>
+        <p>&copy; 2023 Shyrly Zarai Pacco Cruz - "Shigatsu wa Kimi no Uso"</p>
+        <p>« La música es el verdadero lugar donde nuestras almas pueden encontrarse »</p>
     </footer>
 
     <script>
-        // Crear esferas del dragón animadas
-        function createDragonBalls() {
-            const colors = ['#FF9F1C', '#E71D36', '#2EC4B6', '#FFD700', '#011627', '#2D936C', '#FFFFFF'];
-            const sizes = [25, 30, 35, 40, 25, 30, 35];
+        // Crear más hojas cayendo
+        function createLeaves() {
+            const colors = ['#E67E22', '#C0392B', '#8B4513', '#F1C40F'];
+            const sizes = ['30px', '25px', '35px', '20px'];
             
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 5; i++) {
                 setTimeout(() => {
-                    const ball = document.createElement('div');
-                    ball.className = 'dragon-ball';
-                    ball.style.background = colors[i];
-                    ball.style.width = sizes[i] + 'px';
-                    ball.style.height = sizes[i] + 'px';
-                    ball.style.left = Math.random() * -100 + 'px';
-                    ball.style.top = Math.random() * 100 + 'vh';
-                    ball.style.animationDuration = (Math.random() * 10 + 15) + 's';
-                    ball.style.animationDelay = (Math.random() * 5) + 's';
-                    ball.style.opacity = '0.7';
+                    const leaf = document.createElement('div');
+                    leaf.className = 'falling-leaf';
+                    leaf.style.left = Math.random() * 100 + 'vw';
+                    leaf.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    leaf.style.animationDelay = (Math.random() * 5) + 's';
+                    leaf.style.opacity = Math.random() * 0.5 + 0.4;
+                    leaf.style.transform = `scale(${Math.random() * 0.7 + 0.5})`;
                     
-                    // Añadir estrellas a las esferas (excepto la 4 estrellas)
-                    if(i !== 3) {
-                        ball.style.backgroundImage = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'45\' fill=\'' + colors[i].replace('#', '%23') + '\'/><text x=\'50\' y=\'60\' font-size=\'40\' text-anchor=\'middle\' fill=\'black\'>" + (i+1) + "</text></svg>")';
-                    }
+                    // Color aleatorio
+                    const colorIndex = Math.floor(Math.random() * colors.length);
+                    leaf.style.backgroundImage = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="${colors[colorIndex]}" d="M50,0 Q70,20 50,40 Q30,20 50,0 Z" opacity="0.8"/></svg>')`;
                     
-                    document.body.appendChild(ball);
+                    document.body.appendChild(leaf);
 
                     setTimeout(() => {
-                        ball.remove();
-                    }, 25000);
-                }, i * 800);
+                        leaf.remove();
+                    }, 30000);
+                }, i * 2000);
             }
         }
 
-        // Efecto de botones
-        document.querySelectorAll('.btn-dragon').forEach(button => {
+        // Efecto de botones musicales
+        document.querySelectorAll('.music-btn').forEach(button => {
             button.addEventListener('mouseenter', () => {
-                button.classList.add('power-up');
+                button.classList.add('pulse');
             });
             
             button.addEventListener('mouseleave', () => {
-                button.classList.remove('power-up');
+                button.classList.remove('pulse');
             });
             
             button.addEventListener('click', () => {
                 button.style.transform = 'translateY(2px)';
-                button.style.boxShadow = '0 2px 0 var(--dragon-dark)';
+                button.style.boxShadow = '0 2px 0 var(--autumn-brown)';
                 setTimeout(() => {
-                    button.style.transform = 'translateY(-5px)';
-                    button.style.boxShadow = '0 8px 0 var(--dragon-dark), 0 0 15px var(--dragon-orange)';
+                    button.style.transform = 'translateY(-3px)';
+                    button.style.boxShadow = '0 6px 0 var(--autumn-brown), 0 0 15px rgba(230, 126, 34, 0.5)';
                 }, 200);
-                
-                // Efecto de sonido (opcional)
-                if(typeof Audio !== 'undefined') {
-                    const audio = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3');
-                    audio.volume = 0.3;
-                    audio.play().catch(e => console.log('No se pudo reproducir sonido'));
-                }
             });
         });
 
         // Iniciar efectos
         document.addEventListener('DOMContentLoaded', () => {
-            createDragonBalls();
-            setInterval(createDragonBalls, 5000);
+            createLeaves();
+            setInterval(createLeaves, 5000);
             
-            // Efecto de carga Kamehameha
-            setTimeout(() => {
-                const h1 = document.querySelector('h1');
-                h1.style.animation = 'powerUp 0.5s infinite alternate';
-            }, 1000);
+            // Efecto de título pulsante
+            const title = document.querySelector('h1');
+            setInterval(() => {
+                title.style.animation = 'none';
+                setTimeout(() => {
+                    title.style.animation = 'pulseTitle 2s infinite alternate';
+                }, 10);
+            }, 5000);
         });
 
-        // Efecto de movimiento al pasar el mouse
+        // Efecto de movimiento al pasar el mouse sobre las hojas
         document.addEventListener('mousemove', (e) => {
-            const balls = document.querySelectorAll('.dragon-ball');
-            balls.forEach(ball => {
-                const rect = ball.getBoundingClientRect();
+            const leaves = document.querySelectorAll('.falling-leaf');
+            leaves.forEach(leaf => {
+                const rect = leaf.getBoundingClientRect();
                 const x = rect.left + rect.width/2;
                 const y = rect.top + rect.height/2;
                 const distance = Math.sqrt(Math.pow(e.clientX - x, 2) + Math.pow(e.clientY - y, 2));
                 
                 if (distance < 100) {
-                    ball.style.transform = `translate(${(e.clientX - x)/10}px, ${(e.clientY - y)/10}px) scale(1.2)`;
+                    leaf.style.transform = `translate(${(e.clientX - x)/10}px, ${(e.clientY - y)/10}px) scale(1.2)`;
                 }
             });
         });
