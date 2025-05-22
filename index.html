@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -311,33 +311,39 @@
             background-size: 100% 100%;
         }
         
-        .profile-image {
+        /* Estilo para la imagen centrada con animación */
+        .imagen-centrada {
             display: block;
             margin: 30px auto;
-            width: 100%;
-            max-width: 350px;
+            max-width: 100%;
+            width: 350px;
+            height: auto;
             border-radius: 8px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             border: 5px solid var(--sheet-white);
             transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
-            background-color: var(--autumn-orange);
-            height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--sheet-white);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
+            animation: floatImage 6s ease-in-out infinite;
+            filter: sepia(20%) brightness(95%) contrast(110%);
         }
 
-        .profile-image:hover {
-            transform: scale(1.03);
-            box-shadow: 0 15px 30px rgba(192, 57, 43, 0.3);
+        @keyframes floatImage {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            }
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+                box-shadow: 0 15px 35px rgba(192, 57, 43, 0.3);
+            }
+        }
+
+        .imagen-centrada:hover {
+            animation: none;
+            transform: scale(1.05) rotate(2deg);
+            filter: sepia(10%) brightness(100%) contrast(110%);
+            box-shadow: 0 15px 35px rgba(192, 57, 43, 0.4);
         }
         
         .centered-text {
@@ -469,9 +475,8 @@
                 display: none;
             }
             
-            .profile-image {
-                height: 300px;
-                font-size: 1.2rem;
+            .imagen-centrada {
+                width: 280px;
             }
             
             .falling-leaf {
@@ -520,11 +525,12 @@
             <div class="centered-text">
                 Mi Viaje Musical Universitario
             </div>
-            <img src="Abril.jpg" alt="Ruth Mery y sus compañeros" class="imagen-centrada">
+            <img src="abril.jpg" alt="Shyrly Zarai" class="imagen-centrada">
             <div class="centered-text">
                 « La vida no es más que una sucesión de oportunidades para interpretar nuestra propia música »
             </div>
             <div style="text-align: center;">
+                <button class="music-btn pulse">Escuchar Mi Melodía</button>
             </div>
         </section>
 
