@@ -30,11 +30,11 @@
             position: relative;
         }
 
-        /* Hojas cayendo grandes - ahora son pétalos lila */
-        .falling-leaf {
+        /* Pétalos de flor cayendo */
+        .falling-petal {
             position: fixed;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%238A4FFF" d="M50,0 Q70,20 50,40 Q30,20 50,0 Z" opacity="0.8"/></svg>');
             background-size: contain;
             z-index: -1;
@@ -43,10 +43,10 @@
             filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
         }
 
-        /* Notas musicales grandes flotantes */
+        /* Notas musicales flotantes */
         .music-note {
             position: fixed;
-            font-size: 48px;
+            font-size: 36px;
             color: var(--lila-oscuro);
             opacity: 0.6;
             z-index: -1;
@@ -125,13 +125,14 @@
         header {
             background: linear-gradient(135deg, var(--lila-primario), var(--lila-oscuro));
             color: var(--contraste-blanco);
-            padding: 40px 0;
+            padding: 60px 0;
             text-align: center;
             margin-bottom: 40px;
             box-shadow: 0 4px 20px rgba(74, 20, 140, 0.3);
             position: relative;
             overflow: hidden;
             border-bottom: 3px solid var(--lila-neon);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
         
         header::after {
@@ -147,7 +148,7 @@
         
         h1 {
             margin: 0;
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             letter-spacing: 1px;
             font-family: 'Dancing Script', cursive;
             color: var(--contraste-blanco);
@@ -155,20 +156,29 @@
             position: relative;
             display: inline-block;
             animation: pulseTitle 2s infinite alternate;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         @keyframes pulseTitle {
-            0% { transform: scale(1); opacity: 0.9; }
-            100% { transform: scale(1.03); opacity: 1; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+            0% { transform: scale(1) rotateY(0deg); opacity: 0.9; }
+            50% { transform: scale(1.03) rotateY(5deg); opacity: 1; text-shadow: 0 0 15px rgba(255, 255, 255, 0.7); }
+            100% { transform: scale(1) rotateY(0deg); opacity: 0.9; }
         }
 
         .subtitle {
             font-style: italic;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--acento-amarillo);
-            margin-top: 0.8rem;
+            margin-top: 1rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             font-family: 'Playfair Display', serif;
+            animation: floatSubtitle 4s ease-in-out infinite;
+        }
+
+        @keyframes floatSubtitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
         .container {
@@ -177,19 +187,23 @@
             margin: 40px auto;
             overflow: hidden;
             position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
         
         section {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             padding: 35px;
-            margin-bottom: 35px;
-            border-radius: 8px;
+            margin-bottom: 0;
+            border-radius: 12px;
             box-shadow: 0 6px 18px rgba(0,0,0,0.1);
             transition: all 0.4s ease;
             border-left: 5px solid var(--lila-primario);
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(3px);
+            transform-style: preserve-3d;
         }
 
         section::before {
@@ -206,7 +220,7 @@
         }
         
         section:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) rotateY(5deg);
             box-shadow: 0 12px 25px rgba(138, 79, 255, 0.3);
         }
         
@@ -219,6 +233,10 @@
             font-family: 'Playfair Display', serif;
             position: relative;
             font-weight: 700;
+            background: linear-gradient(90deg, var(--lila-primario), var(--lila-secundario));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         h2::after {
@@ -227,7 +245,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, var(--lila-primario), var(--lila-secundario));
             transform: scaleX(0);
             transform-origin: left;
@@ -268,7 +286,7 @@
         }
 
         li:hover::before {
-            transform: scale(1.5);
+            transform: scale(1.5) rotate(15deg);
             color: var(--lila-neon);
         }
         
@@ -292,13 +310,14 @@
         
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             background: linear-gradient(135deg, var(--lila-oscuro), var(--contraste-negro));
             color: var(--contraste-blanco);
             margin-top: 60px;
             font-size: 1rem;
             position: relative;
             border-top: 3px solid var(--lila-neon);
+            clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
         }
 
         footer::before {
@@ -319,7 +338,7 @@
             max-width: 100%;
             width: 350px;
             height: auto;
-            border-radius: 8px;
+            border-radius: 50%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             border: 5px solid var(--contraste-blanco);
             transition: all 0.5s ease;
@@ -327,6 +346,8 @@
             overflow: hidden;
             animation: floatImage 6s ease-in-out infinite;
             filter: sepia(10%) brightness(95%) contrast(110%) hue-rotate(-10deg);
+            object-fit: cover;
+            aspect-ratio: 1/1;
         }
 
         @keyframes floatImage {
@@ -335,16 +356,17 @@
                 box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             }
             50% {
-                transform: translateY(-10px) rotate(1deg);
-                box-shadow: 0 15px 35px rgba(138, 79, 255, 0.4);
+                transform: translateY(-15px) rotate(2deg);
+                box-shadow: 0 20px 40px rgba(138, 79, 255, 0.5);
             }
         }
 
         .imagen-centrada:hover {
             animation: none;
-            transform: scale(1.05) rotate(2deg);
+            transform: scale(1.05) rotate(5deg);
             filter: sepia(5%) brightness(100%) contrast(110%) hue-rotate(-5deg);
-            box-shadow: 0 15px 35px rgba(138, 79, 255, 0.6);
+            box-shadow: 0 20px 45px rgba(138, 79, 255, 0.7);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
         }
         
         .centered-text {
@@ -354,7 +376,8 @@
             font-family: 'Playfair Display', serif;
             font-style: italic;
             color: var(--lila-oscuro);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            padding: 0 20%;
         }
 
         .centered-text::before,
@@ -363,17 +386,26 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--lila-primario);
             opacity: 0.6;
+            transition: all 0.3s ease;
         }
 
         .centered-text::before {
-            left: 10%;
+            left: 15%;
         }
 
         .centered-text::after {
-            right: 10%;
+            right: 15%;
+        }
+
+        .centered-text:hover::before {
+            transform: translateY(-50%) rotate(-15deg);
+        }
+
+        .centered-text:hover::after {
+            transform: translateY(-50%) rotate(15deg);
         }
         
         .music-btn {
@@ -384,7 +416,7 @@
             border-radius: 30px;
             font-weight: 600;
             letter-spacing: 1px;
-            margin: 20px 5px;
+            margin: 15px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 0 var(--lila-oscuro);
             border: none;
@@ -394,6 +426,7 @@
             z-index: 1;
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
+            min-width: 200px;
         }
 
         .music-btn::before {
@@ -409,8 +442,8 @@
         }
         
         .music-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 0 var(--lila-oscuro);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 0 var(--lila-oscuro);
             background: linear-gradient(to right, var(--lila-neon), var(--lila-primario));
         }
 
@@ -429,7 +462,7 @@
         
         @keyframes pulseBtn {
             0% { transform: translateY(0); box-shadow: 0 4px 0 var(--lila-oscuro); }
-            100% { transform: translateY(-3px); box-shadow: 0 6px 0 var(--lila-oscuro), 0 0 15px rgba(138, 79, 255, 0.5); }
+            100% { transform: translateY(-5px); box-shadow: 0 8px 0 var(--lila-oscuro), 0 0 20px rgba(138, 79, 255, 0.6); }
         }
 
         /* Piano decorativo */
@@ -458,13 +491,53 @@
             opacity: 0.1;
         }
 
+        /* Grid especial para la sección de perfil */
+        #profile {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* Efecto de onda en el encabezado */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23ffffff"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23ffffff"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,233.58-49.75C1212.43,7.22,1200,0,1200,0V0Z" fill="%23ffffff"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            transform: rotate(180deg);
+            opacity: 0.1;
+        }
+
+        /* Efecto de partículas */
+        .particle {
+            position: absolute;
+            background-color: var(--lila-claro);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            #profile {
+                grid-column: auto;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 width: 95%;
             }
             
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             section {
@@ -477,29 +550,33 @@
             }
             
             .imagen-centrada {
-                width: 280px;
+                width: 250px;
             }
             
-            .falling-leaf {
-                width: 60px;
-                height: 60px;
+            .falling-petal {
+                width: 40px;
+                height: 40px;
             }
             
             .music-note {
-                font-size: 36px;
+                font-size: 24px;
+            }
+
+            .centered-text {
+                padding: 0 10%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hojas cayendo grandes - ahora pétalos lila -->
-    <div class="falling-leaf" style="left: 10%; animation-duration: 18s; animation-delay: 0s;"></div>
-    <div class="falling-leaf" style="left: 30%; animation-duration: 22s; animation-delay: 3s; transform: scale(1.2);"></div>
-    <div class="falling-leaf" style="left: 70%; animation-duration: 25s; animation-delay: 5s; transform: scale(1.5);"></div>
-    <div class="falling-leaf" style="left: 50%; animation-duration: 20s; animation-delay: 7s; transform: scale(1.3);"></div>
-    <div class="falling-leaf" style="left: 85%; animation-duration: 19s; animation-delay: 2s; transform: scale(1.1);"></div>
+    <!-- Pétalos cayendo -->
+    <div class="falling-petal" style="left: 10%; animation-duration: 18s; animation-delay: 0s;"></div>
+    <div class="falling-petal" style="left: 30%; animation-duration: 22s; animation-delay: 3s; transform: scale(1.2);"></div>
+    <div class="falling-petal" style="left: 70%; animation-duration: 25s; animation-delay: 5s; transform: scale(1.5);"></div>
+    <div class="falling-petal" style="left: 50%; animation-duration: 20s; animation-delay: 7s; transform: scale(1.3);"></div>
+    <div class="falling-petal" style="left: 85%; animation-duration: 19s; animation-delay: 2s; transform: scale(1.1);"></div>
 
-    <!-- Notas musicales grandes -->
+    <!-- Notas musicales -->
     <div class="music-note" style="left: 15%; animation-duration: 20s; animation-delay: 1s;">♪</div>
     <div class="music-note" style="left: 25%; animation-duration: 24s; animation-delay: 4s;">♫</div>
     <div class="music-note" style="left: 65%; animation-duration: 22s; animation-delay: 2s;">♩</div>
@@ -513,9 +590,12 @@
     <!-- Teclas de piano -->
     <div class="piano-keys"></div>
 
+    <!-- Efecto de onda -->
+    <div class="wave"></div>
+
     <header>
         <div class="container">
-            <h1>Shyrly Zarai Pacco Cruz</h1>
+            <h1><a href="https://www.linkedin.com/in/shyrly-zarai-pacco-cruz-139300357/" target="_blank" style="color: inherit; text-decoration: none;">Shyrly Zarai Pacco Cruz</a></h1>
             <p class="subtitle">« Como una melodía en el viento otoñal »</p>
         </div>
     </header>
@@ -530,16 +610,14 @@
             <div class="centered-text">
                 « La vida no es más que una sucesión de oportunidades para interpretar nuestra propia música »
             </div>
-            <div style="text-align: center;">
-            </div>
         </section>
 
         <section id="personal-info">
             <h2>Datos Personales</h2>
             <ul>
-                <li><strong>Nombre:</strong> Shyrly Zarai Pacco Cruz</li>
-                <li><strong>Carrera:</strong> Contabilidad</li>
-                <li><strong>Universidad:</strong> Universidad Católica San Pablo</li>
+                <li><strong>Nombre:</strong> <a href="https://www.linkedin.com/in/shyrly-zarai-pacco-cruz-139300357/" target="_blank">Shyrly Zarai Pacco Cruz</a></li>
+                <li><strong>Carrera:</strong> <a href="https://ucsp.edu.pe/carreras/contabilidad/" target="_blank">Contabilidad</a></li>
+                <li><strong>Universidad:</strong> <a href="https://g.co/kgs/ctmbpVJ" target="_blank">Universidad Católica San Pablo</a></li>
                 <li><strong>Semestre Actual:</strong> Cuarto Semestre</li>
                 <li><strong>Lema:</strong> La vida es como tocar el piano</li>
             </ul>
@@ -572,10 +650,10 @@
         <section id="classmates">
             <h2>Compañeros Universitarios</h2>
             <div style="text-align: center;">
-                <a href=" https://yaninarosalinda.github.io/Yanina-Rosalinda-Quispe-Choque/" target="_blank" class="winter-btn">Yanina Rosalinda Quispe Choque</a>
-                <a href="https://ruthmerybg.github.io/RuthMeryBarrigaVera/" target="_blank" class="winter-btn">Ruth Mery Barriga Vera</a>
-                <button class="winter-btn">Compañero 1</button>
-                <button class="winter-btn">Compañero 2</button>
+                <a href="https://yaninarosalinda.github.io/Yanina-Rosalinda-Quispe-Choque/" target="_blank" class="music-btn">Yanina Rosalinda Quispe Choque</a>
+                <a href="https://ruthmerybg.github.io/RuthMeryBarrigaVera/" target="_blank" class="music-btn">Ruth Mery Barriga Vera</a>
+                <a href="https://nicolegaldos.neocities.org" target="_blank" class="music-btn">Nicole Alexandra Galdós Champi</a>
+                <button class="music-btn">Compañero 1</button>
             </div>
         </section>
     </div>
@@ -586,36 +664,36 @@
     </footer>
 
     <script>
-        // Crear más hojas y notas grandes
+        // Crear más pétalos y notas musicales
         function createFallingElements() {
             const colors = ['#8A4FFF', '#6B3FA0', '#4B2C7A', '#B388FF'];
             const notes = ['♪', '♫', '♩', '♬', '♭', '♮', '♯'];
             
-            // Hojas grandes (ahora pétalos lila)
+            // Pétalos
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
-                    const leaf = document.createElement('div');
-                    leaf.className = 'falling-leaf';
-                    leaf.style.left = Math.random() * 100 + 'vw';
-                    leaf.style.animationDuration = (Math.random() * 15 + 15) + 's';
-                    leaf.style.animationDelay = (Math.random() * 5) + 's';
-                    leaf.style.opacity = Math.random() * 0.5 + 0.4;
-                    leaf.style.transform = `scale(${Math.random() * 0.5 + 1})`;
-                    leaf.style.width = (Math.random() * 40 + 60) + 'px';
-                    leaf.style.height = (Math.random() * 40 + 60) + 'px';
+                    const petal = document.createElement('div');
+                    petal.className = 'falling-petal';
+                    petal.style.left = Math.random() * 100 + 'vw';
+                    petal.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                    petal.style.animationDelay = (Math.random() * 5) + 's';
+                    petal.style.opacity = Math.random() * 0.5 + 0.4;
+                    petal.style.transform = `scale(${Math.random() * 0.5 + 1})`;
+                    petal.style.width = (Math.random() * 40 + 40) + 'px';
+                    petal.style.height = (Math.random() * 40 + 40) + 'px';
                     
                     const colorIndex = Math.floor(Math.random() * colors.length);
-                    leaf.style.backgroundImage = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="${colors[colorIndex]}" d="M50,0 Q70,20 50,40 Q30,20 50,0 Z" opacity="0.8"/></svg>')`;
+                    petal.style.backgroundImage = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="${colors[colorIndex]}" d="M50,0 Q70,20 50,40 Q30,20 50,0 Z" opacity="0.8"/></svg>')`;
                     
-                    document.body.appendChild(leaf);
+                    document.body.appendChild(petal);
 
                     setTimeout(() => {
-                        leaf.remove();
+                        petal.remove();
                     }, 40000);
                 }, i * 3000);
             }
             
-            // Notas musicales grandes
+            // Notas musicales
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
                     const note = document.createElement('div');
@@ -624,7 +702,7 @@
                     note.style.animationDuration = (Math.random() * 20 + 20) + 's';
                     note.style.animationDelay = (Math.random() * 5) + 's';
                     note.style.opacity = Math.random() * 0.4 + 0.3;
-                    note.style.fontSize = (Math.random() * 20 + 40) + 'px';
+                    note.style.fontSize = (Math.random() * 20 + 30) + 'px';
                     
                     const noteIndex = Math.floor(Math.random() * notes.length);
                     note.textContent = notes[noteIndex];
@@ -638,56 +716,89 @@
             }
         }
 
+        // Crear partículas
+        function createParticles() {
+            const particles = [];
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                document.body.appendChild(particle);
+                particles.push(particle);
+                
+                animateParticle(particle);
+            }
+        }
+        
+        function animateParticle(particle) {
+            let x = parseFloat(particle.style.left);
+            let y = parseFloat(particle.style.top);
+            const speedX = (Math.random() - 0.5) * 0.2;
+            const speedY = (Math.random() - 0.5) * 0.2;
+            
+            function move() {
+                x += speedX;
+                y += speedY;
+                
+                // Rebotar en los bordes
+                if (x < 0 || x > 100) {
+                    x = Math.max(0, Math.min(100, x));
+                }
+                if (y < 0 || y > 100) {
+                    y = Math.max(0, Math.min(100, y));
+                }
+                
+                particle.style.left = `${x}vw`;
+                particle.style.top = `${y}vh`;
+                
+                requestAnimationFrame(move);
+            }
+            
+            move();
+        }
+
         // Efecto de botones musicales
         document.querySelectorAll('.music-btn').forEach(button => {
             button.addEventListener('mouseenter', () => {
                 button.classList.add('pulse');
+                
+                // Crear efecto de notas musicales al pasar el mouse
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.style.position = 'absolute';
+                note.style.left = `${Math.random() * 100}%`;
+                note.style.top = `${Math.random() * 100}%`;
+                note.style.animation = 'floatNote 2s ease-out forwards';
+                note.style.fontSize = `${Math.random() * 20 + 20}px`;
+                note.style.opacity = '0.8';
+                
+                const notes = ['♪', '♫', '♩', '♬'];
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                
+                button.appendChild(note);
+                
+                setTimeout(() => {
+                    note.remove();
+                }, 2000);
             });
             
             button.addEventListener('mouseleave', () => {
                 button.classList.remove('pulse');
             });
             
-            button.addEventListener('click', () => {
-                button.style.transform = 'translateY(2px)';
-                button.style.boxShadow = '0 2px 0 var(--lila-oscuro)';
-                setTimeout(() => {
-                    button.style.transform = 'translateY(-3px)';
-                    button.style.boxShadow = '0 6px 0 var(--lila-oscuro), 0 0 15px rgba(138, 79, 255, 0.5)';
-                }, 200);
-            });
-        });
-
-        // Iniciar efectos
-        document.addEventListener('DOMContentLoaded', () => {
-            createFallingElements();
-            setInterval(createFallingElements, 10000);
-            
-            // Efecto de título pulsante
-            const title = document.querySelector('h1');
-            setInterval(() => {
-                title.style.animation = 'none';
-                setTimeout(() => {
-                    title.style.animation = 'pulseTitle 2s infinite alternate';
-                }, 10);
-            }, 5000);
-        });
-
-        // Efecto de movimiento al pasar el mouse
-        document.addEventListener('mousemove', (e) => {
-            const elements = document.querySelectorAll('.falling-leaf, .music-note');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const x = rect.left + rect.width/2;
-                const y = rect.top + rect.height/2;
-                const distance = Math.sqrt(Math.pow(e.clientX - x, 2) + Math.pow(e.clientY - y, 2));
+            button.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') return;
                 
-                if (distance < 150) {
-                    const scale = 1 + (100 - distance) / 100;
-                    el.style.transform = `translate(${(e.clientX - x)/8}px, ${(e.clientY - y)/8}px) scale(${scale})`;
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                button.style.transform = 'translateY(2px)';
+                button.style.boxShadow
